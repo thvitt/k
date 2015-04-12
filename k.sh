@@ -223,19 +223,36 @@ k () {
       262144  208   # <= 0.25mb || 256kb
       524288  202   # <= 0.5mb || 512kb
       )
-    typeset -i ANCIENT_TIME_COLOR=236  # > more than 2 years old
-    typeset -a FILEAGES_TO_COLOR
-    FILEAGES_TO_COLOR=(
-             0 196  # < in the future, #spooky
-            60 255  # < less than a min old
-          3600 252  # < less than an hour old
-         86400 250  # < less than 1 day old
-        604800 244  # < less than 1 week old
-       2419200 244  # < less than 28 days (4 weeks) old
-      15724800 242  # < less than 26 weeks (6 months) old
-      31449600 240  # < less than 1 year old
-      62899200 238  # < less than 2 years old
-      )
+    if [ -z "$BRIGHT_BG" ]
+    then
+      typeset -i ANCIENT_TIME_COLOR=236  # > more than 2 years old
+      typeset -a FILEAGES_TO_COLOR
+      FILEAGES_TO_COLOR=(
+               0 196  # < in the future, #spooky
+              60 255  # < less than a min old
+            3600 252  # < less than an hour old
+           86400 250  # < less than 1 day old
+          604800 244  # < less than 1 week old
+         2419200 244  # < less than 28 days (4 weeks) old
+        15724800 242  # < less than 26 weeks (6 months) old
+        31449600 240  # < less than 1 year old
+        62899200 238  # < less than 2 years old
+        )
+    else
+      typeset -i ANCIENT_TIME_COLOR=254  # > more than 2 years old
+      typeset -a FILEAGES_TO_COLOR
+      FILEAGES_TO_COLOR=(
+               0 196  # < in the future, #spooky
+              60 238  # < less than a min old
+            3600 240  # < less than an hour old
+           86400 242  # < less than 1 day old
+          604800 244  # < less than 1 week old
+         2419200 246  # < less than 28 days (4 weeks) old
+        15724800 248  # < less than 26 weeks (6 months) old
+        31449600 250  # < less than 1 year ol40d
+        62899200 252  # < less than 2 years old
+        )
+    fi
 
     # ----------------------------------------------------------------------------
     # Build up list of files/directories to show
