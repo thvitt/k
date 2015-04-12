@@ -20,6 +20,7 @@ k () {
              d=o_directory -directory=o_directory \
 	     -group-directories-first=o_group_directories \
              h=o_human -human=o_human \
+             H=o_no_human -no-human=o_no_human \
              -si=o_si \
              n=o_no_directory -no-directory=o_no_directory \
              -no-vcs=o_no_vcs \
@@ -31,6 +32,12 @@ k () {
              U=o_sort \
              -help=o_help
 
+  if [[ "$o_no_human" == "" ]]
+  then
+    o_human=h
+  fi
+
+
   # Print Help if bad usage, or they asked for it
   if [[ $? != 0 || "$o_help" != "" ]]
   then
@@ -41,7 +48,7 @@ k () {
     print -u2 "\t-c                      sort by ctime (inode change time)"
     print -u2 "\t-d      --directory     list only directories"
     print -u2 "\t-n      --no-directory  do not list directories"
-    print -u2 "\t-h      --human         show filesizes in human-readable format"
+    print -u2 "\t-H      --no-human      do not show filesizes in human-readable format"
     print -u2 "\t        --si            with -h, use powers of 1000 not 1024"
     print -u2 "\t-r      --reverse       reverse sort order"
     print -u2 "\t-S                      sort by size"
